@@ -10,14 +10,21 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import com.migc.borutoapp.navigation.AppNavGraph
 import com.migc.borutoapp.ui.theme.BorutoAppTheme
 
 class MainActivity : ComponentActivity() {
+
+    private lateinit var navController: NavHostController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             BorutoAppTheme {
-
+                navController = rememberNavController()
+                AppNavGraph(navController = navController)
             }
         }
     }
