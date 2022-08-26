@@ -24,6 +24,7 @@ import com.google.accompanist.pager.*
 import com.migc.borutoapp.R
 import com.migc.borutoapp.domain.model.OnBoardingPage
 import com.migc.borutoapp.ui.theme.*
+import com.migc.borutoapp.utils.Constants.LAST_ON_BOARDING_PAGE
 import com.migc.borutoapp.utils.Constants.ON_BOARDING_PAGE_COUNT
 
 
@@ -88,7 +89,7 @@ fun FinishButton(
     ) {
         AnimatedVisibility(
             modifier = Modifier.fillMaxWidth(),
-            visible = pagerState.currentPage == 2
+            visible = pagerState.currentPage == LAST_ON_BOARDING_PAGE
         ) {
             Button(
                 onClick = onClick,
