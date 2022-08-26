@@ -1,6 +1,9 @@
 package com.migc.borutoapp.utils
 
 object Constants {
+
+    const val BASE_URL = "http://10.0.2.2:8080"
+
     const val DETAILS_ARGUMENT_KEY = "heroId"
 
     const val BORUTO_DATABASE = "boruto_database"
