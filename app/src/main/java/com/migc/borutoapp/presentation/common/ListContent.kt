@@ -51,7 +51,7 @@ fun HeroItem(
             },
         contentAlignment = Alignment.BottomStart
     ) {
-        Surface(shape = Shapes.large) {
+        Surface(shape = RoundedCornerShape(size = LARGE_PADDING)) {
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
                     .data("")
@@ -115,7 +115,7 @@ fun HeroItemPreview() {
             id = 1,
             name = "Sasuke",
             image = "",
-            about = "Random about",
+            about = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
             rating = 4.5,
             power = 100,
             month = "",
