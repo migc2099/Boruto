@@ -18,13 +18,13 @@ fun AppNavGraph(navController: NavHostController) {
         startDestination = Screen.Splash.route
     ) {
         composable(route = Screen.Splash.route) {
-            HomeScreen()
+            SplashScreen(navController = navController)
         }
         composable(route = Screen.Welcome.route) {
             WelcomeScreen(navController = navController)
         }
         composable(route = Screen.Home.route) {
-            HomeScreen()
+            HomeScreen(navHostController = navController)
         }
         composable(
             route = Screen.Details.route,
