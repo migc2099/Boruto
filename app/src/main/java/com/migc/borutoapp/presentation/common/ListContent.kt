@@ -1,7 +1,9 @@
 package com.migc.borutoapp.presentation.common
 
+import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -18,6 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.items
 import coil.compose.AsyncImage
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
@@ -33,7 +36,23 @@ fun ListContent(
     heroes: LazyPagingItems<Hero>,
     navHostController: NavHostController
 ) {
+    Log.d("ListContent", heroes.loadState.toString())
 
+    LazyColumn(
+        contentPadding = PaddingValues(all = SMALL_PADDING),
+        verticalArrangement = Arrangement.spacedBy(SMALL_PADDING)
+    ) {
+        items(
+            items = heroes,
+            key = { hero ->
+                hero.id
+            }
+        ) { hero ->
+            hero?.let {
+                HeroItem(hero = it, navHostController = navHostController)
+            }
+        }
+    }
 }
 
 @Composable
@@ -41,7 +60,7 @@ fun HeroItem(
     hero: Hero,
     navHostController: NavHostController
 ) {
-    val painter = rememberAsyncImagePainter("$BASE_URL${hero.image}")
+//    val painter = rememberAsyncImagePainter("$BASE_URL${hero.image}")
 
     Box(
         modifier = Modifier
@@ -54,7 +73,7 @@ fun HeroItem(
         Surface(shape = RoundedCornerShape(size = LARGE_PADDING)) {
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
-                    .data("")
+                    .data("$BASE_URL${hero.image}")
                     .placeholder(R.drawable.ic_placeholder)
                     .error(R.drawable.ic_placeholder)
                     .build(),
