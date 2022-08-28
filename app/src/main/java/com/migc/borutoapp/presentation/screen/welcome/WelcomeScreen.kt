@@ -14,15 +14,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.Role
-import androidx.compose.ui.semantics.Role.Companion.Image
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.google.accompanist.pager.*
 import com.migc.borutoapp.R
 import com.migc.borutoapp.domain.model.OnBoardingPage
+import com.migc.borutoapp.navigation.Screen
 import com.migc.borutoapp.ui.theme.*
 import com.migc.borutoapp.utils.Constants.LAST_ON_BOARDING_PAGE
 import com.migc.borutoapp.utils.Constants.ON_BOARDING_PAGE_COUNT
@@ -30,7 +30,10 @@ import com.migc.borutoapp.utils.Constants.ON_BOARDING_PAGE_COUNT
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun WelcomeScreen(navController: NavController) {
+fun WelcomeScreen(
+    navController: NavController,
+    welcomeViewModel: WelcomeViewModel = hiltViewModel()
+) {
     val pages = listOf(
         OnBoardingPage.First,
         OnBoardingPage.Second,
@@ -68,7 +71,9 @@ fun WelcomeScreen(navController: NavController) {
             modifier = Modifier.weight(1f),
             pagerState = pagerState
         ) {
-
+            navController.popBackStack()
+            navController.navigate(Screen.Home.route)
+            welcomeViewModel.saveOnBoardingState(true)
         }
     }
 
