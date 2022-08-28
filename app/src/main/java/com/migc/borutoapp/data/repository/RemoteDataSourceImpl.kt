@@ -1,4 +1,4 @@
-package com.migc.borutoapp.domain.repository
+package com.migc.borutoapp.data.repository
 
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
@@ -8,6 +8,7 @@ import com.migc.borutoapp.data.local.BorutoDatabase
 import com.migc.borutoapp.data.paging_source.HeroRemoteMediator
 import com.migc.borutoapp.data.remote.BorutoApi
 import com.migc.borutoapp.domain.model.Hero
+import com.migc.borutoapp.domain.repository.RemoteDataSource
 import com.migc.borutoapp.utils.Constants.ITEM_PER_PAGE
 import kotlinx.coroutines.flow.Flow
 

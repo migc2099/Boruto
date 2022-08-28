@@ -4,7 +4,7 @@ import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFact
 import com.migc.borutoapp.data.local.BorutoDatabase
 import com.migc.borutoapp.data.remote.BorutoApi
 import com.migc.borutoapp.domain.repository.RemoteDataSource
-import com.migc.borutoapp.domain.repository.RemoteDataSourceImpl
+import com.migc.borutoapp.data.repository.RemoteDataSourceImpl
 import com.migc.borutoapp.utils.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -12,7 +12,6 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
-import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -28,8 +27,8 @@ object NetworkModule {
     fun provideHttpClient(): OkHttpClient {
         return OkHttpClient
             .Builder()
-            .readTimeout(15, TimeUnit.MINUTES)
-            .connectTimeout(15, TimeUnit.MINUTES)
+            .readTimeout(15, TimeUnit.SECONDS)
+            .connectTimeout(15, TimeUnit.SECONDS)
             .build()
     }
 
