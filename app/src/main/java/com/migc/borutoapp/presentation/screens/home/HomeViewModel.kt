@@ -1,4 +1,4 @@
-package com.migc.borutoapp.presentation.screen.home
+package com.migc.borutoapp.presentation.screens.home
 
 import androidx.lifecycle.ViewModel
 import com.migc.borutoapp.domain.use_cases.UseCases

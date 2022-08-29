@@ -1,4 +1,4 @@
-package com.migc.borutoapp.presentation.screen.home
+package com.migc.borutoapp.presentation.screens.home
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.material.*

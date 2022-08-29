@@ -1,4 +1,4 @@
-package com.migc.borutoapp.presentation.screen.splash
+package com.migc.borutoapp.presentation.screens.splash
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.util.Log

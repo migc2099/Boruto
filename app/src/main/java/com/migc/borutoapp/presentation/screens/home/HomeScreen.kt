@@ -1,4 +1,4 @@
-package com.migc.borutoapp.presentation.screen.home
+package com.migc.borutoapp.presentation.screens.home
 
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable

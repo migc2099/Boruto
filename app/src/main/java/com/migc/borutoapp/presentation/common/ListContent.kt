@@ -108,7 +108,7 @@ fun HeroItem(
                     .placeholder(R.drawable.ic_placeholder)
                     .error(R.drawable.ic_placeholder)
                     .build(),
-                contentDescription = stringResource(R.string.heor_image),
+                contentDescription = stringResource(R.string.hero_image),
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.fillMaxSize()
             )

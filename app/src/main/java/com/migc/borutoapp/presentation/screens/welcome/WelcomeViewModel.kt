@@ -1,4 +1,4 @@
-package com.migc.borutoapp.presentation.screen.welcome
+package com.migc.borutoapp.presentation.screens.welcome
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
