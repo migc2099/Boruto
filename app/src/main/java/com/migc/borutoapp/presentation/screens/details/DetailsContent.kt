@@ -1,5 +1,6 @@
 package com.migc.borutoapp.presentation.screens.details
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -27,6 +28,7 @@ import com.migc.borutoapp.presentation.components.OrderedList
 import com.migc.borutoapp.ui.theme.*
 import com.migc.borutoapp.utils.Constants.ABOUT_TEXT_MAX_LINES
 import com.migc.borutoapp.utils.Constants.BASE_URL
+import com.migc.borutoapp.utils.Constants.MIN_BACKGROUND_IMAGE_HEIGHT
 
 @ExperimentalMaterialApi
 @Composable
@@ -40,6 +42,9 @@ fun DetailsContent(
         )
     )
 
+    val currentSheetFraction = scaffoldState.currentSheetFraction
+    Log.d("Fraction new", currentSheetFraction.toString())
+
     BottomSheetScaffold(
         scaffoldState = scaffoldState,
         sheetPeekHeight = MIN_SHEET_HEIGHT,
@@ -52,6 +57,7 @@ fun DetailsContent(
             selectedHero?.let { hero ->
                 BackgroundContent(
                     heroImage = hero.image,
+                    imageFraction = currentSheetFraction,
                     onCloseClicked = {
                         navHostController.popBackStack()
                     }
@@ -86,7 +92,7 @@ fun BackgroundContent(
             contentScale = ContentScale.Crop,
             modifier = Modifier
                 .fillMaxWidth()
-                .fillMaxHeight(fraction = imageFraction)
+                .fillMaxHeight(fraction = imageFraction + MIN_BACKGROUND_IMAGE_HEIGHT)
                 .align(Alignment.TopStart)
         )
         Row(
@@ -209,6 +215,27 @@ fun BottomSheetContent(
         }
     }
 }
+
+@ExperimentalMaterialApi
+val BottomSheetScaffoldState.currentSheetFraction: Float
+    get() {
+        val fraction = bottomSheetState.progress.fraction
+        val targetValue = bottomSheetState.targetValue
+        val currentValue = bottomSheetState.currentValue
+
+        Log.d("Fraction", fraction.toString())
+        Log.d("Fraction Target", targetValue.toString())
+        Log.d("Fraction Current", currentValue.toString())
+
+        return when {
+            currentValue == BottomSheetValue.Collapsed && targetValue == BottomSheetValue.Collapsed -> 1f
+            currentValue == BottomSheetValue.Expanded && targetValue == BottomSheetValue.Expanded -> 0f
+            currentValue == BottomSheetValue.Collapsed && targetValue == BottomSheetValue.Expanded -> 1f - fraction
+            currentValue == BottomSheetValue.Expanded && targetValue == BottomSheetValue.Collapsed -> 0f + fraction
+            else -> fraction
+        }
+
+    }
 
 @Composable
 @Preview
