@@ -2,8 +2,9 @@ package com.migc.borutoapp.di
 
 import android.content.Context
 import androidx.room.Room
-import androidx.room.RoomDatabase
 import com.migc.borutoapp.data.local.BorutoDatabase
+import com.migc.borutoapp.data.repository.LocalDataSourceImpl
+import com.migc.borutoapp.domain.repository.LocalDataSource
 import com.migc.borutoapp.utils.Constants.BORUTO_DATABASE
 import dagger.Module
 import dagger.Provides
@@ -26,6 +27,16 @@ object DatabaseModule {
             BorutoDatabase::class.java,
             BORUTO_DATABASE
         ).build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideLocalDataSource(
+        database: BorutoDatabase
+    ):LocalDataSource {
+        return LocalDataSourceImpl(
+            borutoDatabase = database
+        )
     }
 
 }
